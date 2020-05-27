@@ -3,19 +3,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Starter Template - Materialize</title>
+    <title>S18706 Bookstore</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
-<body>
-<nav class="light-green lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Bookstore s18706</a>
+<body style="background-color:rgba(190,176,159,0.66);">
+<nav class="grey darken-4" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">Książki</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Navbar Link</a></li>
-            <li><a href="#">Navbar Link</a></li>
-            <li><a href="#">Navbar Link</a></li>
+            <li><a href="#">Książki</a></li>
+            <li><a href="#">Autorzy</a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
@@ -24,38 +24,42 @@
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Bookstore</h1>
-        <br><br>
-
-    </div>
-</div>
-
 
 <div class="container">
     <div class="section">
 
         <table>
             <thead>
-            <tr>
-                <th> Tytuł </th>
-                <th> Autor </th>
-            </tr>
+                <tr>
+                    <td colspan="3">
+                        <ul class="right">
+                            <li>Sortuj po</li>
+                            <li><select class="browser-default">
+                                <option value="titleUp">Tutuł rosnąco</option>
+                                <option value="titleDown">Tytuł malejąco</option>
+                                <option value="authorUp">Autor rosnąco</option>
+                                <option value="authorDown">Autor malejąco</option>
+                            </select></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th> Tytuł </th>
+                    <th> Autor </th>
+                    <th> Rok </th>
+                </tr>
             </thead>
             <tbody>
             <tr th:if="${books.empty}">
-                <td colspan="2"> Brak książek </td>
+                <td colspan="3"> Brak książek </td>
             </tr>
             <tr th:each="book : ${books}">
                 <td><span th:text="${book.title}"> Title </span></td>
-                <td><span th:text="${book.author}"> Author </span></td>
+                <td><span th:text="${book.authorsFName}"></span> <span th:text="${book.authorsLName}"></span></td>
+                <td><span th:text="${book.year}"> Rok </span></td>
             </tr>
             </tbody>
         </table>
-
-
     </div>
     <br><br>
 </div>
