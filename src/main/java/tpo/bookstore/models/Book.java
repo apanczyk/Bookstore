@@ -1,9 +1,10 @@
 package tpo.bookstore.models;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class Book {
+
 
     private String title;
     private String authorsFName;
@@ -15,5 +16,20 @@ public class Book {
         this.authorsFName = authorsFName;
         this.authorsLName = authorsLName;
         this.year = year;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthorsFName() {
+        return authorsFName;
+    }
+
+    public String getAuthorsLName() {
+        return authorsLName;
+    }
+
+    public int getYear() {
+        return year;
     }
 }

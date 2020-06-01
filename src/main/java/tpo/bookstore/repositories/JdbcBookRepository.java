@@ -14,23 +14,9 @@ public class JdbcBookRepository implements BookRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Book> findAll(String sortByWhat, String sortMethod) {
-        return jdbcTemplate.query(
-                "select * from Book",
-                (rs, rowNum) ->
-                        new Book(
-                                rs.getString("title"),
-                                rs.getString("authorFName"),
-                                rs.getString("authorLName"),
-                                rs.getInt("year")
-                        )
-        );
-    }
-
-    @Override
-    public List<Book> findByName(String name) {
-        return jdbcTemplate.query(
-                "select * from books where title=?",new Object[] {name},
+    public List<Book> findAll(String name) {
+        String sql = "SELECT * FROM Book";
+        return jdbcTemplate.query(sql,
                 (rs, rowNum) ->
                         new Book(
                                 rs.getString("title"),

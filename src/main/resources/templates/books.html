@@ -5,23 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>S18706 Bookstore</title>
 
-    <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body style="background-color:rgba(190,176,159,0.66);">
 <nav class="grey darken-4" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Książki</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Książki</a></li>
-            <li><a href="#">Autorzy</a></li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a id="logo-container" href="#" class="brand-logo">TPO5_PA_S18706</a>
     </div>
 </nav>
 
@@ -32,15 +22,26 @@
             <thead>
                 <tr>
                     <td colspan="3">
-                        <ul class="right">
-                            <li>Sortuj po</li>
-                            <li><select class="browser-default">
-                                <option value="titleUp">Tutuł rosnąco</option>
-                                <option value="titleDown">Tytuł malejąco</option>
-                                <option value="authorUp">Autor rosnąco</option>
-                                <option value="authorDown">Autor malejąco</option>
-                            </select></li>
-                        </ul>
+                        <form th:action="@{/}">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                    <input th:name="search" th:value="${search}" id="search" type="text">
+                                    <label for="search">Wyszukaj książkę</label>
+                            </div>
+                            <div>
+                                <ul class="right">
+                                    <select th:name="sortBy" class="browser-default" onchange="this.form.submit()">
+                                        <option th:value="titleUp" th:selected="${basic}==titleUp">Tutuł rosnąco</option>
+                                        <option th:value="titleDown" th:selected="${basic}==titleDown">Tytuł malejąco</option>
+                                        <option th:value="authorUp" th:selected="${basic}==authorUp" >Autor rosnąco</option>
+                                        <option th:value="authorDown" th:selected="${basic}==authorDown">Autor malejąco</option>
+                                        <option th:value="yearUp" th:selected="${basic}==yearUp">Rok rosnąco</option>
+                                        <option th:value="yearDown" th:selected="${basic}==yearDown">Rok malejąco</option>
+                                    </select>
+                                </ul>
+                            </div>
+                        </div>
+                        </form>
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +56,7 @@
             </tr>
             <tr th:each="book : ${books}">
                 <td><span th:text="${book.title}"> Title </span></td>
-                <td><span th:text="${book.authorsFName}"></span> <span th:text="${book.authorsLName}"></span></td>
+                <td><span th:text="${book.authorsLName}"></span> <span th:text="${book.authorsFName}"></span></td>
                 <td><span th:text="${book.year}"> Rok </span></td>
             </tr>
             </tbody>
